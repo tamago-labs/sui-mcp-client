@@ -28,19 +28,21 @@ export function validateEnvironment(): void {
 
     const args = getArgs();
 
-    const requiredEnvVars = {
-        SUI_PRIVATE_KEY: args?.sui_private_key || process.env.SUI_PRIVATE_KEY,
-        SUI_NETWORK: args?.sui_network || process.env.SUI_NETWORK,
-    };
+    // Check if either private key or access key is provided
+    const hasPrivateKey = !!(args?.sui_private_key || process.env.SUI_PRIVATE_KEY);
+    const hasAccessKey = !!(args?.sui_access_key || process.env.SUI_ACCESS_KEY);
 
-    const missingVars = Object.entries(requiredEnvVars)
-        .filter(([_, value]) => !value)
-        .map(([key]) => key);
-
-    if (missingVars.length > 0) {
+    // Must have either private key or access key, but not necessarily both
+    if (!hasPrivateKey && !hasAccessKey) {
         throw new Error(
-            `Missing required environment variables: ${missingVars.join(', ')}`
+            'Missing required environment variables: Either SUI_PRIVATE_KEY or SUI_ACCESS_KEY must be provided'
         );
+    }
+
+    // Network is still required in both modes
+    const hasSuiNetwork = !!(args?.sui_network || process.env.SUI_NETWORK);
+    if (!hasSuiNetwork) {
+        throw new Error('Missing required environment variable: SUI_NETWORK');
     }
 }
 
@@ -51,11 +53,16 @@ export function getSuiConfig(): SuiConfig {
 
     const currentEnv = {
         SUI_PRIVATE_KEY: args?.sui_private_key || process.env.SUI_PRIVATE_KEY,
+        SUI_ACCESS_KEY: args?.sui_access_key || process.env.SUI_ACCESS_KEY,
         SUI_NETWORK: args?.sui_network || process.env.SUI_NETWORK,
+        SUI_API_URL: args?.sui_api_url || process.env.SUI_API_URL || 'https://sui-mcp.tamagolabs.com/api',
     };
 
     return {
-        privateKey: currentEnv.SUI_PRIVATE_KEY!,
+        privateKey: currentEnv.SUI_PRIVATE_KEY || undefined,
+        accessKey: currentEnv.SUI_ACCESS_KEY || undefined,
         network: (currentEnv.SUI_NETWORK || 'testnet') as 'testnet' | 'mainnet',
+        apiUrl: currentEnv.SUI_API_URL,
+        mode: currentEnv.SUI_PRIVATE_KEY ? 'private-key' : 'access-key',
     };
 }

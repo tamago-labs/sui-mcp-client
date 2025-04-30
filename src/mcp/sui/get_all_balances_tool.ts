@@ -12,7 +12,7 @@ export const GetAllTokenBalancesTool: McpTool = {
     },
     handler: async (agent: Agent, input: Record<string, any>) => {
 
-        const result = await agent.getAllBalances(input?.walletAddress || agent.walletAddress)
+        const result = await agent.getAllBalances(input?.walletAddress)
 
         return {
             status: "success",

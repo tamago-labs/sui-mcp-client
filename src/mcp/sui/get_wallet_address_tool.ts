@@ -9,9 +9,12 @@ export const GetWalletAddressTool: McpTool = {
     description: "Get the active wallet address",
     schema: {},
     handler: async (agent: Agent, input: Record<string, any>) => {
+
+        const walletAddress = await agent.getWalletAddress()
+
         return {
             status: "success",
-            walletAddress: agent.walletAddress
+            walletAddress
         };
     },
 }

@@ -65,13 +65,7 @@ async function main() {
         // Validate environment before proceeding
         validateEnvironment();
 
-        // Get configuration
-        const config = getSuiConfig();
-
-        const myAgent = new Agent(
-            config.privateKey,
-            config.network
-        );
+        const myAgent = new Agent();
 
         const server = createMcpServer(myAgent);
         const transport = new StdioServerTransport();

@@ -1,8 +1,11 @@
-import { z } from "zod"; 
+import { z } from "zod";
 
 export interface SuiConfig {
-    privateKey: string;
+    privateKey?: string;
+    accessKey?: string;
     network: 'testnet' | 'mainnet';
+    apiUrl: string;
+    mode: 'private-key' | 'access-key';
 }
 
 export interface McpTool {
@@ -24,4 +27,3 @@ export interface TransactionResponse {
     digest?: string;
     status: string;
 }
- 

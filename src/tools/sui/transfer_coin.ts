@@ -10,6 +10,14 @@ export const transferCoin = async (
 ): Promise<TransactionResponse> => {
     const client = agent.client;
 
+    if (!agent.walletAddress) {
+        throw new Error("Invalid wallet address")
+    }
+
+    if (!agent.wallet) {
+        throw new Error("Signer is not provided")
+    }
+
     // get metadata of all coins
     const balances = await client.getAllBalances({
         owner: agent.walletAddress,

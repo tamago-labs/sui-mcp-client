@@ -14,10 +14,18 @@ export const deployCoin = async (agent: Agent, form: ICreateTokenForm): Promise<
 
     const client = agent.client;
 
+    if (!agent.walletAddress) {
+        throw new Error("Invalid wallet address")
+    }
+
+    if (!agent.wallet) {
+        throw new Error("Signer is not provided")
+    }
+
     await initMoveByteCodeTemplate(
         "https://www.suicoins.com/move_bytecode_template_bg.wasm",
     );
-
+    
     const tx = new Transaction();
 
     const allSuiCoins = await client.getCoins({
