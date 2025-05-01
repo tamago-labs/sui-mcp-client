@@ -1,6 +1,6 @@
 {
     "name": "sui-serverless-mcp",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Serverless-based MCP server implementation for Sui blockchain using zkLogin",
     "main": "dist/index.js",
     "module": "./dist/index.mjs",

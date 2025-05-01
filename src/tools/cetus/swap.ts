@@ -60,6 +60,7 @@ export const swap = async (agent: Agent, fromToken: string, toToken: string, amo
 
     // Initialize the Cetus Aggregator client
     const client = new AggregatorClient({
+        signer: agent.walletAddress,
         client: agent.client,
         env: agent.network === "mainnet" ? Env.Mainnet : Env.Testnet
     })
