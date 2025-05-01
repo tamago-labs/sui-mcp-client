@@ -61,7 +61,7 @@ export function getSuiConfig(): SuiConfig {
     return {
         privateKey: currentEnv.SUI_PRIVATE_KEY || undefined,
         accessKey: currentEnv.SUI_ACCESS_KEY || undefined,
-        network: (currentEnv.SUI_NETWORK || 'testnet') as 'testnet' | 'mainnet',
+        network: (currentEnv.SUI_NETWORK || 'mainnet') as 'testnet' | 'mainnet',
         apiUrl: currentEnv.SUI_API_URL,
         mode: currentEnv.SUI_PRIVATE_KEY ? 'private-key' : 'access-key',
     };
