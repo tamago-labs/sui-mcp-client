@@ -1,7 +1,7 @@
 import { DelegatedStake, getFullnodeUrl, SuiClient } from "@mysten/sui/client";
 import { Ed25519Keypair } from "@mysten/sui/keypairs/ed25519";
 import { NameRecord } from "@mysten/suins/dist/cjs/types";
-import { TokenBalance, TransactionResponse } from "../types";
+import { SwapQuote, TokenBalance, TransactionResponse } from "../types";
 import { getAllBalances } from "../tools/sui/balance";
 import { transferCoin } from "../tools/sui/transfer_coin";
 import { ICreateTokenForm } from "../utils/move-template/coin";
@@ -12,6 +12,8 @@ import { registerSns } from "../tools/sns/register";
 import { getNameRecord } from "../tools/sns/get_name";
 import { getStake } from "../tools/sui/get_stake";
 import { getSuiConfig } from "../config";
+import { getSwapQuote } from "../tools/cetus/get_swap_quote";
+import { swap } from "../tools/cetus/swap";
 
 export class Agent {
 
@@ -172,6 +174,26 @@ export class Agent {
 
     async getSnsNameRecord(name: string): Promise<NameRecord | undefined> {
         return getNameRecord(this, name)
+    }
+
+    async getSwapQuote(fromToken: string, toToken: string, amount: number): Promise<SwapQuote> {
+        return getSwapQuote(this, fromToken, toToken, amount)
+    }
+
+    async swap(fromToken: string, toToken: string, amount: number): Promise<TransactionResponse> {
+         if (this.mode === 'private-key' && this.wallet) {
+            return swap(this, fromToken, toToken, amount)
+        } else if (this.mode === 'access-key') {
+            return this.executeRemoteTransaction(
+                "SwapTokensTool",
+                {
+                    fromToken,
+                    toToken,
+                    amount
+                });
+        } else {
+            throw new Error('Unable to swap: Invalid configuration');
+        }
     }
 
     private async fetchWalletAddressFromApi(): Promise<string> {

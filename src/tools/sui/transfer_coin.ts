@@ -57,7 +57,7 @@ export const transferCoin = async (
         owner: agent.walletAddress,
         coinType: coinMetadata.address,
     });
-    const [mainCoin, ...restCoin] = allCoins.data;
+    const [mainCoin, ...restCoins] = allCoins.data;
 
     // check if the balance is enough
     const decimals = coinMetadata.decimals;
@@ -75,7 +75,17 @@ export const transferCoin = async (
         tokenSymbol === "SUI" ? txb.gas : mainCoin.coinObjectId;
     const [coin] = txb.splitCoins(coinObjId, [amount * 10 ** decimals]);
 
+    // merge the coins
+        if (restCoins.length > 0) {
+            txb.mergeCoins(
+                txb.object(mainCoin.coinObjectId),
+                restCoins.map((coin) => txb.object(coin.coinObjectId)),
+            );
+        }
+
     txb.transferObjects([coin], to);
+
+
 
     // execute the transaction
     const txOutput = await client.signAndExecuteTransaction({

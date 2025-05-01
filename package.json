@@ -14,7 +14,8 @@
     "scripts": {
         "build": "tsup",
         "prepare": "npm run build",
-        "test": "jest"
+        "test": "jest",
+        "test-swap" : "tsup run ./src/tools/cetus"
     },
     "repository": {
         "type": "git",
@@ -47,6 +48,7 @@
         "typescript": "^5.8.3"
     },
     "dependencies": {
+        "@cetusprotocol/aggregator-sdk": "^0.8.0",
         "@modelcontextprotocol/sdk": "^1.10.2",
         "@mysten/sui": "^1.29.0",
         "@mysten/suins": "^0.7.14",

@@ -27,3 +27,10 @@ export interface TransactionResponse {
     digest?: string;
     status: string;
 }
+
+export interface SwapQuote {
+    fromToken: string;
+    toToken: string;
+    inputAmount: number;
+    estimatedOutput: number;
+}

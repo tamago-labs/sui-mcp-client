@@ -7,16 +7,19 @@ import { GetWalletAddressTool } from "./sui/get_wallet_address_tool";
 import { StakeSuiTool } from "./sui/stake_sui_tool";
 import { TransferTokenTool } from "./sui/transfer_token_tool";
 import { UnstakeSuiTool } from "./sui/unstake_sui_tool";
-
+import { GetSwapQuoteTool } from "./cetus/get_swap_quote_tool";
+import { SwapTokensTool } from "./cetus/swap_tokens_tool";
 
 export const SuiMcpTools = {
-    "GetSnsNameTool" : GetSnsNameTool,
-    "RegisterSnsTool" : RegisterSnsTool,
-    "DeployTokenTool" : DeployTokenTool,
-    "GetAllTokenBalancesTool" : GetAllTokenBalancesTool,
-    "GetStakeTool" : GetStakeTool,
-    "GetWalletAddressTool" : GetWalletAddressTool,
-    "StakeSuiTool" : StakeSuiTool,
+    "GetSnsNameTool": GetSnsNameTool,
+    "RegisterSnsTool": RegisterSnsTool,
+    "DeployTokenTool": DeployTokenTool,
+    "GetAllTokenBalancesTool": GetAllTokenBalancesTool,
+    "GetStakeTool": GetStakeTool,
+    "GetWalletAddressTool": GetWalletAddressTool,
+    "StakeSuiTool": StakeSuiTool,
     "TransferTokenTool": TransferTokenTool,
-    "UnstakeSuiTool": UnstakeSuiTool
+    "UnstakeSuiTool": UnstakeSuiTool,
+    "GetSwapQuoteTool": GetSwapQuoteTool,
+    "SwapTokensTool": SwapTokensTool
 }

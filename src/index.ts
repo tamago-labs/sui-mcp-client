@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
-import { getSuiConfig, validateEnvironment } from './config';
+import { validateEnvironment } from './config';
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { SuiMcpTools } from './mcp';
 import { Agent } from './agent';
-
-export const testFunction = () => {
-    return "test function!!!"
-}
 
 /**
  * Creates an MCP server
