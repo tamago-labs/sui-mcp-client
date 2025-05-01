@@ -6,6 +6,10 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { SuiMcpTools } from './mcp';
 import { Agent } from './agent';
 
+export const testFunction = () => {
+    return "test function!!!"
+}
+
 /**
  * Creates an MCP server
  */
