@@ -4,6 +4,11 @@
   
 Sui Serverless MCP is a Model Context Protocol (MCP) server implementation for the Sui blockchain that leverages zkLogin authentication. It enables AI assistants supporting the Model Context Protocol to securely interact with the Sui ecosystem, allowing users to perform a wide range of on-chain operations without needing to write code or understand technical details.
 
+- [YouTube Demo](https://youtu.be/WmyxVXJUsdM) 
+- [Application](https://sui-mcp.tamagolabs.com)
+- [NPM Registry](https://www.npmjs.com/package/sui-serverless-mcp)
+- [Core Repo](https://github.com/tamago-labs/sui-serverless-mcp)
+
 ## Components
 
 The system is composed of two subsystems across two repositories:
