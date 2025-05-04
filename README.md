@@ -140,6 +140,16 @@ The following tools are available in the current version, allowing you to perfor
 | `sui_get_swap_quote` | Get a quote for swapping tokens | "If I want to swap 10 SUI for NAVI, how much NAVI will I get?" |
 | `sui_swap_tokens` | Swap tokens on Cetus Aggregator | "Swap 10 SUI to NAVI now" |
 
+## zkLogin Transaction Flow
+
+When a user operates in zkLogin mode using an MCP-compatible AI client:
+
+1. The client pushes a transaction request to the backend.
+
+2. The transaction is stored in the database with a pending status.
+
+3. The user can visit the dashboard to manually approve the transaction using their zkLogin-authenticated session.
+
 ## License
 This project is licensed under the MIT License.
 
