@@ -152,6 +152,35 @@ When a user operates in zkLogin mode using an MCP-compatible AI client:
 
 3. The user can visit the dashboard to manually approve the transaction using their zkLogin-authenticated session.
 
+## Troubleshooting
+
+If you're using Ubuntu or another Linux environment with NVM, you'll need to manually configure the path. Follow these steps:
+
+1. Install the MCP Client globally under your current NVM-managed Node.js version.
+
+```
+npm install -g sui-serverless-mcp
+```
+
+2. Due to how NVM installs libraries, you may need to use absolute paths in your config. Replace the example values below with your actual username and Node version:
+
+```
+{
+  "mcpServers": {
+    "sui-mcp": {
+      "command": "/home/YOUR_NAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/node",
+      "args": [
+        "/home/YOUR_NAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/sui-serverless-mcp",
+        "--sui_access_key=YOUR_ACCESS_KEY",
+        "--sui_network=mainnet"
+      ]
+    }
+  }
+}
+```
+
+3. Restart Claude Desktop and it should work now.
+
 ## License
 This project is licensed under the MIT License.
 
