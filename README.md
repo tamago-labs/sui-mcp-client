@@ -13,87 +13,133 @@ A Node.js TypeScript library designed to run inside MCP-compatible AI model clie
 
 ## Features
 
-- Supports MCP-compatible AI clients, including Claude Desktop
+- Supports MCP-compatible clients like Claude Desktop. Many more are being developed.
 
-- 10+ MCP tools covering account management, token operations, and staking
+- 10+ MCP tools covering account management, token operations, and staking.
 
-- Token swaps via the Cetus DEX Aggregator
+- Token swaps on Mainnet via the Cetus DEX Aggregator.
 
-- Fully non-custodial — no private keys are ever exposed to any server 
-
-- Will be more powerful with other MCP tools like the filesystem, github, this allows AI to access your directory and automate tasks both within and outside of Web3.
+- Fully non-custodial, enables transactions using zkLogin wallets from the AI chat interface.
 
 ## Using with Claude Desktop
 
-### Quick Setup
+There are two mode available: zkLogin (recommended for most new users) and Private Key (for advanced users).
 
-1. **Get Your Access Key**
-   - Sign in with zkLogin on the [Sui zkMCP dashboard](https://zkmcp.sui.io)
-   - Copy your access key from the dashboard
+### Private Key Mode ###
 
-2. **Configure Claude Desktop**
-   - Create a JSON file named `sui-zkmcp-config.json` with the following:
-   ```json
-   {
-     "mcpServers": {
-       "sui": {
-         "command": "npx",
-         "args": [
-           "-y",
-           "sui-zkmcp",
-           "--sui_access_key=YOUR_ACCESS_KEY", 
-           "--sui_network=testnet"
-         ],
-         "disabled": false
-       }
-     }
-   }
+In Private Key mode, all operations (including transfers and other write operations) will be executed automatically without requiring additional approval.
+
+1. Install Claude Desktop if you haven't already
+2. Open Claude Desktop settings
+3. Add the Sui MCP client to your configuration:
+
+```
+{
+  "mcpServers": {
+    "sui-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "sui-serverless-mcp",
+        "--sui_private_key=YOUR_PRIVATE_KEY", 
+        "--sui_network=mainnet"
+      ],
+      "disabled": false
+    }
+  }
+}
+```
+
+Private Key mode is recommended for advanced users who can securely manage their private keys. The MCP client handles transactions locally without exposing any data to external servers.
+
+### zkLogin Mode ###
+
+With zkLogin authentication, read operations (balance checks, quotes) work immediately, but write operations (transfers, swaps) require explicit approval in the dashboard.
+
+1. Install Claude Desktop if you haven't already
+2. Open Claude Desktop settings
+3. Add the Sui MCP client to your configuration:
+
+```
+{
+  "mcpServers": {
+    "sui-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "sui-serverless-mcp",
+        "--sui_access_key=YOUR_ACCESS_KEY", 
+        "--sui_network=mainnet"
+      ],
+      "disabled": false
+    }
+  }
+}
+```
+
+The access key can be obtained from the dashboard. After logging in, a unique access key will be generated for each user.
+
+### Comparison ###
+
+Feature | zkLogin | Private Key 
+--- | --- | ---
+Security |  Higher - private key never exposed  | Lower - requires managing private key
+Transaction Approval | Required for write operations | Automatic execution
+Setup Complexity | Simple OAuth login |  Requires secure key management
+Best For | Regular users, mobile usage | Developers, advanced users
 
 
-## Overview
+## Background
 
-Blockchain interactions have traditionally required technical knowledge and specialized interfaces. Sui zkMCP bridges this gap by allowing users to interact with the Sui blockchain through familiar conversational AI interfaces like Claude Desktop.
+Today, when building AI applications—especially those focused on crypto, we often rely on agent kits based on Langchain. These kits tightly couple the AI model and components, requiring frequent updates, otherwise, the application risks becoming non-functional within a few months or even weeks.
 
-The project provides two authentication methods:
-- **zkLogin Method**: Enhanced security using OAuth providers (Google, Facebook, etc.) with zero-knowledge proofs, requiring explicit approval for transactions
-- **Private Key Method**: Direct access with full transaction control for developers and advanced users
+Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly become popular today. It solves this issue by integrating directly with AI interfaces, allowing users to easily switch to the latest models and interact with Web3 through standardized tools. 
 
-By implementing the Model Context Protocol, Sui zkMCP creates a seamless connection between AI assistants and blockchain functionality, democratizing access to Web3.
+## Available Tools
 
-## Features
+The following tools are available in the current version, allowing you to perform various on-chain operations directly from your favorite AI chat panel:
 
-### Wallet Management
-Check your wallet address and token balances with simple natural language commands.
-> "What's my wallet address?" • "Show my token balances"
+### Wallet Operations
+
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_get_wallet_address` | Retrieve your wallet address | "What's my wallet address for Sui?" |
+| `sui_get_all_balances` | Get all token balances | "Show my token balances" |
 
 ### Token Transfers
-Send SUI and other tokens to any address securely through conversational commands.
-> "Transfer 5 SUI to 0x123..." • "Send 10 USDC to Bob's wallet"
 
-### DeFi Swaps
-Swap tokens using Cetus Aggregator for optimal rates across multiple liquidity sources.
-> "Swap 10 SUI to CETUS" • "Get quote for exchanging 5 USDC to USDT"
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_transfer_token` | Transfer tokens to another address | "Transfer 10 SUI to domain.sui" |
 
-### Staking Management
-Stake and unstake SUI tokens with validators to earn rewards and participate in consensus.
-> "Stake 100 SUI to validator X" • "Show my staked positions" • "Unstake my SUI"
+### Staking Operations
 
-### SNS Domains
-Register and manage Sui Name Service domains through simple conversational interactions.
-> "Register myname.sui for 2 years" • "Look up info about domain.sui"
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_stake` | Stake SUI tokens to a validator | "Stake 100 SUI to validator 0x1234" |
+| `sui_get_stake` | Get all staked SUI tokens | "Show my staked positions" |
+| `sui_unstake` | Unstake SUI tokens | "Unstake my SUI on this staked sui 0x4567" |
 
-### Token Creation
-Deploy your own tokens on Sui blockchain with customizable parameters and supply.
-> "Create a token named MyToken with symbol MTK" • "Deploy a fixed supply token"
+### Token Management
 
-### DeFi Market Data
-Get real-time quotes and exchange rates for tokens on various Sui DeFi protocols.
-> "What's the rate for SUI to CETUS?" • "Check price impact for large swap"
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_deploy_token` | Deploy a new token on Sui | "Create a token named MyToken with symbol MTK" |
 
-### Flexible Authentication
-Choose between secure zkLogin authentication or direct private key access for advanced users.
-> "OAuth login with Google" • "Configure with private key for full control"
+### SNS Domain Services
 
-### Validator Insights
-View validator performance, APY rates, and find the best staking opportunities.
-> "List top validators by APY" • "Show validator X's performance"
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_get_sns_name_record` | Get SNS domain information | "Look up info about domain.sui" |
+| `sui_register_sns` | Register a SNS domain | "Register myname.sui for 2 years" |
+
+### DeFi Operations
+
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `sui_get_swap_quote` | Get a quote for swapping tokens | "If I want to swap 10 SUI for NAVI, how much NAVI will I get?" |
+| `sui_swap_tokens` | Swap tokens on Cetus Aggregator | "Swap 10 SUI to NAVI now" |
+
+## License
+This project is licensed under the MIT License.
+
