@@ -15,7 +15,7 @@
         "build": "tsup",
         "prepare": "npm run build",
         "test": "jest",
-        "test-swap" : "tsup run ./src/tools/cetus"
+        "test-swap": "tsup run ./src/tools/cetus"
     },
     "repository": {
         "type": "git",
@@ -52,6 +52,7 @@
         "@modelcontextprotocol/sdk": "^1.10.2",
         "@mysten/sui": "^1.29.0",
         "@mysten/suins": "^0.7.14",
+        "@pythnetwork/hermes-client": "^2.0.0",
         "axios": "^1.9.0",
         "bignumber.js": "^9.3.0",
         "zod": "^3.24.3"

@@ -10,6 +10,7 @@ import { UnstakeSuiTool } from "./sui/unstake_sui_tool";
 import { GetSwapQuoteTool } from "./cetus/get_swap_quote_tool";
 import { SwapTokensTool } from "./cetus/swap_tokens_tool";
 import { CliTools } from "./cli";
+import { PythTools } from "./pyth";
 
 export const SuiMcpTools = {
     "GetSnsNameTool": GetSnsNameTool,
@@ -23,5 +24,6 @@ export const SuiMcpTools = {
     "UnstakeSuiTool": UnstakeSuiTool,
     "GetSwapQuoteTool": GetSwapQuoteTool,
     "SwapTokensTool": SwapTokensTool,
-    ...CliTools
+    ...CliTools,
+    ...PythTools
 }
