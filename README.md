@@ -2,33 +2,28 @@
 
 ![NPM Version](https://img.shields.io/npm/v/sui-butler)
 
-Rebranding in-progress.
-  
-Sui Serverless MCP is a Model Context Protocol (MCP) server implementation for the Sui blockchain that leverages zkLogin authentication. It enables AI assistants supporting the Model Context Protocol to securely interact with the Sui ecosystem, allowing users to perform a wide range of on-chain operations without needing to write code or understand technical details.
+**Sui Butler** is a Model Context Protocol (MCP) server implementation for the Sui blockchain ecosystem that bridges AI intelligence for simplified development, DeFi portfolio management, seamless governance, and a variety of use cases through the comprehensive MCP tools we provide.
 
 - [YouTube Demo](https://youtu.be/WmyxVXJUsdM) 
-- [Application](https://sui-mcp.tamagolabs.com)
+- [Website](https://sui-mcp.tamagolabs.com)
 - [NPM Registry](https://www.npmjs.com/package/sui-serverless-mcp)
-- [Core Repo](https://github.com/tamago-labs/sui-serverless-mcp)
+- [Backend Repo](https://github.com/tamago-labs/sui-serverless-mcp)
 
 ## Components
+The system is composed of two subsystems:
 
-The system is composed of two subsystems across two repositories:
-
-- **[Sui Serverless MCP Client](https://github.com/tamago-labs/sui-mcp-client)** – (This repository)
-A Node.js TypeScript library designed to run inside MCP-compatible AI model clients such as Claude Desktop. It enables AI agents to interact with the Sui blockchain.
-
-- **[Sui Serverless MCP Core](https://github.com/tamago-labs/sui-serverless-mcp)** – The backend system is built using the AWS Serverless Stack. It includes backend services and a dashboard for issuing access keys and managing transactions in zkLogin mode
+- **Sui Butler Client** – (This repository) A Node.js TypeScript library designed to run inside MCP-compatible AI model clients such as Claude Desktop. It enables AI agents to interact with the Sui blockchain.
+- **Sui Butler Backend** – The backend system built using the AWS Serverless Stack. It includes backend services and a dashboard for issuing access keys and managing transactions in zkLogin mode.
 
 ## Features
 
-- Supports MCP-compatible clients like Claude Desktop. Many more are being developed.
+- Supports MCP-compatible clients like Claude Desktop with more integrations coming
+- 20+ MCP tools covering account management, smart contract development, staking, token operations and market data
+- Token swaps on Mainnet via the Cetus DEX Aggregator
+- Pyth price oracle integration for real-time market data
+- Sui CLI integration for smart contract development and testing
+- Fully non-custodial, enables transactions using zkLogin wallets from the AI chat interface
 
-- 10+ MCP tools covering account management, token operations, and staking.
-
-- Token swaps on Mainnet via the Cetus DEX Aggregator.
-
-- Fully non-custodial, enables transactions using zkLogin wallets from the AI chat interface.
 
 ## Using with Claude Desktop
 
@@ -97,6 +92,38 @@ Transaction Approval | Required for write operations | Automatic execution
 Setup Complexity | Simple OAuth login |  Requires secure key management
 Best For | Regular users, mobile usage | Developers, advanced users
 
+## Key Use Cases
+
+### 1. DeFi Portfolio Management with Real-Time Price Data
+Butler connects to Pyth price oracles and external sources to help you:
+
+- Monitor real-time cryptocurrency prices across multiple assets
+- Compare prices across different platforms for optimal trading opportunities
+- Execute token swaps on Cetus Aggregator at the most advantageous moment
+- Track your portfolio performance and get AI-powered insights on market trends
+
+*Example: "..."*
+
+### 2. Smart Contract Development & Testing Assistance
+Butler integrates with the Sui CLI to help developers:
+- Analyze existing Move code and suggest improvements
+- Generate comprehensive test cases for smart contracts
+- Automatically execute tests and provide detailed reports
+- Help debug issues with intelligent error analysis
+- Publish and upgrade packages directly through AI conversation
+
+*Example: "..."*
+
+### 3. Protocol Governance & Parameter Management
+Butler assists DeFi protocol managers with:
+
+- Monitoring key market metrics to inform governance decisions
+- Simulating parameter changes before implementation
+- Updating protocol parameters like utilization ratios for lending protocols
+- Analyzing the effects of parameter changes on protocol performance
+- Managing governance proposals through simple conversations
+
+*Example: "..."*
 
 ## Background
 
@@ -106,48 +133,51 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 
 ## Available Tools
 
-The following tools are available in the current version, allowing you to perform various on-chain operations directly from your favorite AI chat panel:
-
-### Wallet Operations
-
+### Wallet & Network Operations
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
-| `sui_get_wallet_address` | Retrieve your wallet address | "What's my wallet address for Sui?" |
+| `sui_get_wallet_address` | Retrieve your wallet address | "What's my wallet address?" |
 | `sui_get_all_balances` | Get all token balances | "Show my token balances" |
 
-### Token Transfers
-
+### Token Transfers & DeFi
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
-| `sui_transfer_token` | Transfer tokens to another address | "Transfer 10 SUI to domain.sui" |
+| `sui_transfer_token` | Transfer tokens to another address | "Transfer 10 SUI to 0x123..." |
+| `sui_get_swap_quote` | Get a quote for swapping tokens | "Get quote for swapping 10 SUI to CETUS" |
+| `sui_swap_tokens` | Swap tokens on Cetus Aggregator | "Swap 10 SUI to CETUS with 0.5% slippage" |
 
 ### Staking Operations
-
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
-| `sui_stake` | Stake SUI tokens to a validator | "Stake 100 SUI to validator 0x1234" |
+| `sui_stake` | Stake SUI tokens to a validator | "Stake 100 SUI to validator X" |
 | `sui_get_stake` | Get all staked SUI tokens | "Show my staked positions" |
-| `sui_unstake` | Unstake SUI tokens | "Unstake my SUI on this staked sui 0x4567" |
+| `sui_unstake` | Unstake SUI tokens | "Unstake my SUI from validator X" |
 
 ### Token Management
-
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
 | `sui_deploy_token` | Deploy a new token on Sui | "Create a token named MyToken with symbol MTK" |
 
 ### SNS Domain Services
-
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
 | `sui_get_sns_name_record` | Get SNS domain information | "Look up info about domain.sui" |
 | `sui_register_sns` | Register a SNS domain | "Register myname.sui for 2 years" |
 
-### DeFi Operations
-
+### Sui CLI Integration
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
-| `sui_get_swap_quote` | Get a quote for swapping tokens | "If I want to swap 10 SUI for NAVI, how much NAVI will I get?" |
-| `sui_swap_tokens` | Swap tokens on Cetus Aggregator | "Swap 10 SUI to NAVI now" |
+| `sui_cli_move_build` | Build a Move package | "Build my Move package" |
+| `sui_cli_move_test` | Run Move unit tests | "Run tests for my smart contract" |
+| `sui_cli_publish` | Publish a Move package | "Publish my package to testnet" |
+| `sui_cli_active_env` | Get current network | "Which network am I connected to?" |
+
+### Price Data (Pyth)
+| Tool Name | Description | Example Usage |
+|-----------|-------------|---------------|
+| `pyth_search_price_feeds` | Search for price feeds | "Find BTC price feeds on Pyth" |
+| `pyth_get_prices` | Get prices by feed IDs | "Get the latest BTC and ETH prices" |
+| `pyth_get_common_crypto_prices` | Get common crypto prices | "What are the current prices for BTC, ETH, SOL and SUI?" |
 
 ## zkLogin Transaction Flow
 
