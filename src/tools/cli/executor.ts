@@ -1,8 +1,8 @@
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as os from 'os';
+// import * as fs from 'fs';
+// import * as path from 'path';
+// import * as os from 'os';
 
 const execAsync = promisify(exec);
 
@@ -65,32 +65,32 @@ export const executeSuiCommand = async (
  * @param scriptContent Content of the shell script
  * @returns Result of the script execution
  */
-export const executeViaScript = async (scriptContent: string): Promise<CliResult> => {
-  try {
-    // Create temporary script file
-    const tempDir = os.tmpdir();
-    const scriptPath = path.join(tempDir, `sui-butler-${Date.now()}.sh`);
+// export const executeViaScript = async (scriptContent: string): Promise<CliResult> => {
+//   try {
+//     // Create temporary script file
+//     const tempDir = os.tmpdir();
+//     const scriptPath = path.join(tempDir, `sui-butler-${Date.now()}.sh`);
     
-    // Write script to file
-    await fs.promises.writeFile(scriptPath, scriptContent, { mode: 0o755 });
+//     // Write script to file
+//     await fs.promises.writeFile(scriptPath, scriptContent, { mode: 0o755 });
     
-    // Execute the script
-    const { stdout, stderr } = await execAsync(scriptPath);
+//     // Execute the script
+//     const { stdout, stderr } = await execAsync(scriptPath);
     
-    // Clean up
-    await fs.promises.unlink(scriptPath);
+//     // Clean up
+//     await fs.promises.unlink(scriptPath);
     
-    return {
-      stdout,
-      stderr,
-      success: true
-    };
-  } catch (error: any) {
-    console.error('Error executing script:', error);
-    return {
-      stdout: '',
-      stderr: error.message || 'Unknown error executing script',
-      success: false
-    };
-  }
-};
+//     return {
+//       stdout,
+//       stderr,
+//       success: true
+//     };
+//   } catch (error: any) {
+//     console.error('Error executing script:', error);
+//     return {
+//       stdout: '',
+//       stderr: error.message || 'Unknown error executing script',
+//       success: false
+//     };
+//   }
+// };
