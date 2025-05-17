@@ -9,6 +9,7 @@ import { TransferTokenTool } from "./sui/transfer_token_tool";
 import { UnstakeSuiTool } from "./sui/unstake_sui_tool";
 import { GetSwapQuoteTool } from "./cetus/get_swap_quote_tool";
 import { SwapTokensTool } from "./cetus/swap_tokens_tool";
+import { CliTools } from "./cli";
 
 export const SuiMcpTools = {
     "GetSnsNameTool": GetSnsNameTool,
@@ -21,5 +22,6 @@ export const SuiMcpTools = {
     "TransferTokenTool": TransferTokenTool,
     "UnstakeSuiTool": UnstakeSuiTool,
     "GetSwapQuoteTool": GetSwapQuoteTool,
-    "SwapTokensTool": SwapTokensTool
+    "SwapTokensTool": SwapTokensTool,
+    ...CliTools
 }
