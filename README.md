@@ -1,6 +1,8 @@
-# Sui Serverless MCP
+# Sui Butler
 
-![NPM Version](https://img.shields.io/npm/v/sui-serverless-mcp)
+![NPM Version](https://img.shields.io/npm/v/sui-butler)
+
+Rebranding in-progress.
   
 Sui Serverless MCP is a Model Context Protocol (MCP) server implementation for the Sui blockchain that leverages zkLogin authentication. It enables AI assistants supporting the Model Context Protocol to securely interact with the Sui ecosystem, allowing users to perform a wide range of on-chain operations without needing to write code or understand technical details.
 

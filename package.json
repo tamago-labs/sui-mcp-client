@@ -1,12 +1,12 @@
 {
-    "name": "sui-serverless-mcp",
-    "version": "0.0.5",
+    "name": "sui-butler",
+    "version": "0.1.0",
     "description": "Serverless-based MCP server implementation for Sui blockchain using zkLogin",
     "main": "dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "bin": {
-        "sui-serverless-mcp": "dist/index.js"
+        "sui-butler": "dist/index.js"
     },
     "files": [
         "dist"
@@ -19,7 +19,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/tamago-labs/sui-serverless-mcp.git"
+        "url": "git+https://github.com/tamago-labs/sui-butler.git"
     },
     "keywords": [
         "sui",
@@ -34,9 +34,9 @@
     "author": "Pisuth",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/tamago-labs/sui-serverless-mcp/issues"
+        "url": "https://github.com/tamago-labs/sui-butler/issues"
     },
-    "homepage": "https://sui-mcp.tamagolabs.com",
+    "homepage": "https://sui-butler.tamagolabs.com",
     "devDependencies": {
         "@types/jest": "^29.5.14",
         "@types/node": "^22.15.2",
