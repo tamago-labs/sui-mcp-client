@@ -2,8 +2,7 @@
 
 ![NPM Version](https://img.shields.io/npm/v/sui-butler)
 
-**Sui Butler** is a Model Context Protocol (MCP) server implementation for the Sui blockchain ecosystem that bridges AI intelligence for simplified development, DeFi portfolio management, seamless governance, and a variety of use cases through the comprehensive MCP tools we provide.
-
+**Sui Butler** is a Model Context Protocol (MCP) server implementation for the Sui blockchain ecosystem that bridges AI intelligence for simplified development and more.
 - [YouTube Demo](https://youtu.be/de4bEIH26Vo) 
 - [Website](https://sui-mcp.tamagolabs.com)
 - [Presentation](https://github.com/tamago-labs/sui-butler/blob/main/SUI%20Butler%20-%20Presentation.pdf)
@@ -18,7 +17,6 @@ The system is composed of two subsystems:
 
 ## Features
 
-- Supports MCP-compatible clients like Claude Desktop with more integrations coming
 - 30+ MCP tools covering account management, smart contract development, staking, token operations and market data
 - Token swaps on Mainnet via the Cetus DEX Aggregator
 - Pyth price oracle integration for real-time market data
@@ -41,11 +39,11 @@ In Private Key mode, all operations (including transfers and other write operati
 ```
 {
   "mcpServers": {
-    "sui-mcp": {
+    "sui-butler": {
       "command": "npx",
       "args": [
         "-y",
-        "sui-serverless-mcp",
+        "sui-butler",
         "--sui_private_key=YOUR_PRIVATE_KEY", 
         "--sui_network=mainnet"
       ],
@@ -59,7 +57,7 @@ Private Key mode is recommended for advanced users who can securely manage their
 
 ### zkLogin Mode ###
 
-With zkLogin authentication, read operations (balance checks, quotes) work immediately, but write operations (transfers, swaps) require explicit approval in the dashboard.
+With zkLogin authentication, read operations (balance checks, quotes) work immediately, but write operations (transfers, swaps) require approval in the dashboard.
 
 1. Install Claude Desktop if you haven't already
 2. Open Claude Desktop settings
@@ -68,11 +66,11 @@ With zkLogin authentication, read operations (balance checks, quotes) work immed
 ```
 {
   "mcpServers": {
-    "sui-mcp": {
+    "sui-butler": {
       "command": "npx",
       "args": [
         "-y",
-        "sui-serverless-mcp",
+        "sui-butler",
         "--sui_access_key=YOUR_ACCESS_KEY", 
         "--sui_network=mainnet"
       ],
@@ -84,36 +82,37 @@ With zkLogin authentication, read operations (balance checks, quotes) work immed
 
 The access key can be obtained from the dashboard. After logging in, a unique access key will be generated for each user.
 
-### Comparison ###
+## Use Cases
 
-Feature | zkLogin | Private Key 
---- | --- | ---
-Security |  Higher - private key never exposed  | Lower - requires managing private key
-Transaction Approval | Required for write operations | Automatic execution
-Setup Complexity | Simple OAuth login |  Requires secure key management
-Best For | Regular users, mobile usage | Developers, advanced users
-
-## Key Use Cases
-
-### 1. DeFi Portfolio Management with Real-Time Price Data
+### 1. DeFi Portfolio Management 
 Butler connects to Pyth price oracles and external sources to help you:
 
 - Monitor real-time cryptocurrency prices across multiple assets
 - Compare prices across different platforms for optimal trading opportunities
-- Execute token swaps on Cetus Aggregator at the most advantageous moment
-- Track your portfolio performance and get AI-powered insights on market trends
+- Execute token swaps via Cetus Aggregator 
 
-*Example: "..."*
+*Example:*
+
+![Screenshot from 2025-05-18 18-08-37](https://github.com/user-attachments/assets/f03ca84a-6d1b-44c0-adad-86dfcebd375b)
+
+![Screenshot from 2025-05-18 18-11-29](https://github.com/user-attachments/assets/c98aa7fe-2be2-417c-ba76-026c26856ce4)
 
 ### 2. Smart Contract Development & Testing Assistance
 Butler integrates with the Sui CLI to help developers:
 - Analyze existing Move code and suggest improvements
 - Generate comprehensive test cases for smart contracts
-- Automatically execute tests and provide detailed reports
-- Help debug issues with intelligent error analysis
 - Publish and upgrade packages directly through AI conversation
 
-*Example: "..."*
+*Example:*
+
+![Screenshot from 2025-05-18 18-13-38](https://github.com/user-attachments/assets/a819e29a-ac59-4e3c-a82e-28262e5ba445)
+
+![Screenshot from 2025-05-18 18-14-05](https://github.com/user-attachments/assets/5da84b52-8e4f-4c53-845d-7a32a928844a)
+
+![Screenshot from 2025-05-18 18-14-20](https://github.com/user-attachments/assets/24d91eee-97db-4e90-819f-26a8af5ba2c1)
+
+![Screenshot from 2025-05-18 18-14-34](https://github.com/user-attachments/assets/f667364f-da84-4eb5-a84b-e9854ffeab0d)
+
 
 ### 3. Protocol Governance & Parameter Management
 Butler assists DeFi protocol managers with:
@@ -123,8 +122,6 @@ Butler assists DeFi protocol managers with:
 - Updating protocol parameters like utilization ratios for lending protocols
 - Analyzing the effects of parameter changes on protocol performance
 - Managing governance proposals through simple conversations
-
-*Example: "..."*
 
 ## Background
 
@@ -176,7 +173,7 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 | `sui_cli_active_env` | Get the currently active Sui network environment | "Which network of Sui CLI connected to?" |
 | `sui_cli_active_address` | Get current network | "Get active address on Sui CLI?" |
 | `sui_cli_addresses` | List all wallet addresses, their aliases | "List all wallets on Sui CLI?" |
-| `sui_cli_switch_address` | Change the active address | "List all wallets on Sui CLI?" |
+| `sui_cli_switch_address` | Change the active address | "Change active address on Sui CLI to 0x456" |
 
 ### Price Data (Pyth)
 | Tool Name | Description | Example Usage |
@@ -199,10 +196,10 @@ When a user operates in zkLogin mode using an MCP-compatible AI client:
 
 If you're using Ubuntu or another Linux environment with NVM, you'll need to manually configure the path. Follow these steps:
 
-1. Install the MCP Client globally under your current NVM-managed Node.js version.
+1. Install the Sui Butler under your current NVM-managed Node.js version.
 
 ```
-npm install -g sui-serverless-mcp
+npm install -g sui-butler
 ```
 
 2. Due to how NVM installs libraries, you may need to use absolute paths in your config. Replace the example values below with your actual username and Node version:
@@ -213,7 +210,7 @@ npm install -g sui-serverless-mcp
     "sui-mcp": {
       "command": "/home/YOUR_NAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/node",
       "args": [
-        "/home/YOUR_NAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/sui-serverless-mcp",
+        "/home/YOUR_NAME/.nvm/versions/node/YOUR_NODE_VERSION/bin/sui-butler",
         "--sui_access_key=YOUR_ACCESS_KEY",
         "--sui_network=mainnet"
       ]
@@ -226,9 +223,7 @@ npm install -g sui-serverless-mcp
 
 ## Work with Local Files
 
-When working with local files especially when using Sui CLI tools for smart contract development to create, build, and test a Move package on your machine—you’ll need to import an additional MCP server library of `filesystem` made by Claude team. 
-
-And you need to add a configuration like below:
+When working with local files especially when using Sui CLI tools for smart contract development to create, build, and test a Move package on your machine—you’ll need to import an additional MCP server library of `filesystem` made by Claude team. Use with:
 
 ```
 "filesystem": {
