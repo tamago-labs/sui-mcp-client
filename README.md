@@ -19,7 +19,7 @@ The system is composed of two subsystems:
 ## Features
 
 - Supports MCP-compatible clients like Claude Desktop with more integrations coming
-- 20+ MCP tools covering account management, smart contract development, staking, token operations and market data
+- 30+ MCP tools covering account management, smart contract development, staking, token operations and market data
 - Token swaps on Mainnet via the Cetus DEX Aggregator
 - Pyth price oracle integration for real-time market data
 - Sui CLI integration for smart contract development and testing
@@ -134,7 +134,7 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 
 ## Available Tools
 
-### Wallet & Network Operations
+### Wallet Operations
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
 | `sui_get_wallet_address` | Retrieve your wallet address | "What's my wallet address?" |
@@ -168,10 +168,15 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 ### Sui CLI Integration
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
-| `sui_cli_move_build` | Build a Move package | "Build my Move package" |
-| `sui_cli_move_test` | Run Move unit tests | "Run tests for my smart contract" |
-| `sui_cli_publish` | Publish a Move package | "Publish my package to testnet" |
-| `sui_cli_active_env` | Get current network | "Which network am I connected to?" |
+| `sui_cli_publish` | Deploy a Move package to the network |"Deploy a Move package on provided folder to the network"|
+| `sui_cli_move_test` | Run Move unit tests on the folder | "Run tests for my smart contract on provided folder" |
+| `sui_cli_move_new` | Create a new Move project | "Help create a new move project name my-project-test" |
+| `sui_cli_move_build` | Build a Move package | "Help build the package on the provided folder" |
+| `sui_cli_call` | Call a Move function | "Call the package 0x1234 on update_k() with this args [10000]" |
+| `sui_cli_active_env` | Get the currently active Sui network environment | "Which network of Sui CLI connected to?" |
+| `sui_cli_active_address` | Get current network | "Get active address on Sui CLI?" |
+| `sui_cli_addresses` | List all wallet addresses, their aliases | "List all wallets on Sui CLI?" |
+| `sui_cli_switch_address` | Change the active address | "List all wallets on Sui CLI?" |
 
 ### Price Data (Pyth)
 | Tool Name | Description | Example Usage |
@@ -218,6 +223,28 @@ npm install -g sui-serverless-mcp
 ```
 
 3. Restart Claude Desktop and it should work now.
+
+## Work with Local Files
+
+When working with local files especially when using Sui CLI tools for smart contract development to create, build, and test a Move package on your machine—you’ll need to import an additional MCP server library of `filesystem` made by Claude team. 
+
+And you need to add a configuration like below:
+
+```
+"filesystem": {
+  "command": "npx",
+  "args": [
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    "${workspaceFolder}"
+  ],
+  "disabled": false
+}
+```
+
+`workspaceFolder` refers to your working directory. You can provide more than one argument. Subfolders or specific files  can then be referenced in your AI prompt.
+
+If you're using Linux and encounter issues during setup, please refer to the troubleshooting section.
 
 ## License
 This project is licensed under the MIT License.
