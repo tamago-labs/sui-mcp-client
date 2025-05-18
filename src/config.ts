@@ -55,7 +55,7 @@ export function getSuiConfig(): SuiConfig {
         SUI_PRIVATE_KEY: args?.sui_private_key || process.env.SUI_PRIVATE_KEY,
         SUI_ACCESS_KEY: args?.sui_access_key || process.env.SUI_ACCESS_KEY,
         SUI_NETWORK: args?.sui_network || process.env.SUI_NETWORK,
-        SUI_API_URL: args?.sui_api_url || process.env.SUI_API_URL || 'https://sui-mcp.tamagolabs.com/api',
+        SUI_API_URL: args?.sui_api_url || process.env.SUI_API_URL || 'https://sui-butler.tamagolabs.com/api',
     };
 
     return {

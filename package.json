@@ -1,6 +1,6 @@
 {
     "name": "sui-butler",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Serverless-based MCP server implementation for Sui blockchain using zkLogin",
     "main": "dist/index.js",
     "module": "./dist/index.mjs",
