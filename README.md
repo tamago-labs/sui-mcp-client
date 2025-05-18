@@ -4,11 +4,11 @@
 
 **Sui Butler** is a Model Context Protocol (MCP) server implementation for the Sui blockchain ecosystem that bridges AI intelligence for simplified development, DeFi portfolio management, seamless governance, and a variety of use cases through the comprehensive MCP tools we provide.
 
-- [YouTube Demo](https://youtu.be/WmyxVXJUsdM) 
+- [YouTube Demo](https://youtu.be/de4bEIH26Vo) 
 - [Website](https://sui-mcp.tamagolabs.com)
 - [Presentation](https://github.com/tamago-labs/sui-butler/blob/main/SUI%20Butler%20-%20Presentation.pdf)
-- [NPM Registry](https://www.npmjs.com/package/sui-serverless-mcp)
-- [Backend Repo](https://github.com/tamago-labs/sui-serverless-mcp)
+- [NPM Registry](https://www.npmjs.com/package/sui-butler)
+- [Backend Repo](https://github.com/tamago-labs/sui-butler-backend)
 
 ## Components
 The system is composed of two subsystems:
