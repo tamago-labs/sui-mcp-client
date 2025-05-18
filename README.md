@@ -6,6 +6,7 @@
 
 - [YouTube Demo](https://youtu.be/WmyxVXJUsdM) 
 - [Website](https://sui-mcp.tamagolabs.com)
+- [Presentation](https://github.com/tamago-labs/sui-butler/blob/main/SUI%20Butler%20-%20Presentation.pdf)
 - [NPM Registry](https://www.npmjs.com/package/sui-serverless-mcp)
 - [Backend Repo](https://github.com/tamago-labs/sui-serverless-mcp)
 
