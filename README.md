@@ -117,11 +117,14 @@ Butler integrates with the Sui CLI to help developers:
 ### 3. Protocol Governance & Parameter Management
 Butler assists DeFi protocol managers with:
 
-- Monitoring key market metrics to inform governance decisions
-- Simulating parameter changes before implementation
-- Updating protocol parameters like utilization ratios for lending protocols
-- Analyzing the effects of parameter changes on protocol performance
-- Managing governance proposals through simple conversations
+- Checking external sources to determine optimal parameters based on current market conditions
+- For example, in collateralization protocols, Butler can analyze asset prices to suggest better collateral ratio settings for smart contracts
+- Then propose new governance parameters through AI conversations
+
+*Example:*
+
+![Screenshot from 2025-05-22 08-02-10](https://github.com/user-attachments/assets/20366f56-ab0d-4ebf-9e2e-ee3e2c048bbf)
+
 
 ## Background
 
@@ -171,7 +174,7 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 | `sui_cli_move_build` | Build a Move package | "Help build the package on the provided folder" |
 | `sui_cli_call` | Call a Move function | "Call the package 0x1234 on update_k() with this args [10000]" |
 | `sui_cli_active_env` | Get the currently active Sui network environment | "Which network of Sui CLI connected to?" |
-| `sui_cli_active_address` | Get current network | "Get active address on Sui CLI?" |
+| `sui_cli_active_address` | Get the active address on Sui CLI | "Get active address on Sui CLI?" |
 | `sui_cli_addresses` | List all wallet addresses, their aliases | "List all wallets on Sui CLI?" |
 | `sui_cli_switch_address` | Change the active address | "Change active address on Sui CLI to 0x456" |
 
