@@ -147,6 +147,7 @@ Model Context Protocol (MCP), introduced by Claude AI in late 2024, has quickly 
 ### Staking Operations
 | Tool Name | Description | Example Usage |
 |-----------|-------------|---------------|
+| `sui_get_validators` | Get all active validators | "What are good validator to stake with?" |
 | `sui_stake` | Stake SUI tokens to a validator | "Stake 100 SUI to validator X" |
 | `sui_get_stake` | Get all staked SUI tokens | "Show my staked positions" |
 | `sui_unstake` | Unstake SUI tokens | "Unstake my SUI from validator X" |

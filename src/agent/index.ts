@@ -14,6 +14,7 @@ import { getStake } from "../tools/sui/get_stake";
 import { getSuiConfig } from "../config";
 import { getSwapQuote } from "../tools/cetus/get_swap_quote";
 import { swap } from "../tools/cetus/swap";
+import { getValidators, ValidatorInfo } from "../tools/sui/get_validators";
 
 export class Agent {
 
@@ -152,6 +153,13 @@ export class Agent {
         }
     }
 
+    async getValidators(
+        sortBy: 'apy' | 'stake' | 'commission' = 'stake',
+        limit?: number
+    ): Promise<ValidatorInfo[]> {
+        return getValidators(this, sortBy, limit);
+    }
+
     async registerSns(
         name: string,
         years: number,
@@ -181,7 +189,7 @@ export class Agent {
     }
 
     async swap(fromToken: string, toToken: string, amount: number): Promise<TransactionResponse> {
-         if (this.mode === 'private-key' && this.wallet) {
+        if (this.mode === 'private-key' && this.wallet) {
             return swap(this, fromToken, toToken, amount)
         } else if (this.mode === 'access-key') {
             return this.executeRemoteTransaction(
