@@ -1,6 +1,6 @@
 
 import { z } from "zod";
-import { Agent } from "../../agent" 
+import { Agent } from "../../agent"
 import { type McpTool } from "../../types";
 
 export const StakeSuiTool: McpTool = {
@@ -9,16 +9,16 @@ export const StakeSuiTool: McpTool = {
     schema: {
         amount: z.number().positive().min(1)
             .describe("The amount of SUI to stake (minimum 1 SUI)"),
-        poolId: z.string()
-            .describe("The validator pool ID to stake to")
+        validatorAddress: z.string()
+            .describe("The validator pool address to stake to (Use get_validators_tool to list available validators and their details)")
     },
     handler: async (agent: Agent, input: Record<string, any>) => {
         try {
-            
-            const result = await agent.stake(input.amount, input.poolId)
+
+            const result = await agent.stake(input.amount, input.validatorAddress)
 
             return {
-                message: `Successfully staked ${input.amount} SUI to validator pool ${input.poolId}`,
+                message: `Successfully staked ${input.amount} SUI to validator pool ${input.validatorAddress}`,
                 ...result
             };
         } catch (error: any) {
